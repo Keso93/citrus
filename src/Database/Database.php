@@ -8,7 +8,7 @@ use PDOException;
 class Database
 {
     private $host="localhost";
-    private $username="marko";
+    private $username="root";
     private $password="root";
     private $dbName="citrus";
 
