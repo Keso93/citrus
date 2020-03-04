@@ -4,22 +4,33 @@ $( document ).ready(function(){
 
 
 //Login
-var name;
-var password;
 $( "#loginAdmin" ).click(function(event) {
     event.preventDefault();
-    name= $("#name").val();
-    password = $("#password").val();
     var data = {
-        name: name,
-        password: password
+        name: '',
+        password: ''
     };
+    if (validator.empty($("#name").val())){
+        $('#name').attr('Placeholder', 'Required filed');
+    } else {
+        data.name = $("#name").val();
+    }
+    if (validator.empty($("#password").val())){
+        $('#password').attr('Placeholder', 'Required filed');
+    } else {
+        data.password = $("#password").val();
+    }
+
     var loginSuccessFunction = function(response){
         if (response.status) {
             window.location.href = 'dashboard';
+        } else {
+            alert(response.message)
         }
     };
-    adapter.post('/admin/login', data, loginSuccessFunction);
+    if (!validator.empty(data.name) && !validator.empty(data.password)){
+        adapter.post('/admin/login', data, loginSuccessFunction);
+    }
 });
 
 
