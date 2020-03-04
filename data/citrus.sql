@@ -59,13 +59,14 @@ CREATE TABLE `comment` (
 --
 
 INSERT INTO `comment` (`id`, `name`, `email`, `text`, `date`, `approve`) VALUES
-(1, 'Marko', 'marko@gmail.com', 'Great and fresh fruits!', '2020-03-17', 1),
-(2, 'Djordje', 'djordje@gmail.com', 'Great service!', '2020-03-20', 1),
-(3, 'Djordje', 'djordje@gmail.com', 'Great service! ', '2020-03-12', 1),
-(50, 'Lazar', 'lazar@gmail.com', 'Good staff!!!', '2020-03-03', 1),
-(51, 'Lazar', 'lazar@gmail.com', 'Good staff!!!', '2020-03-03', 0),
-(52, 'Lazar', 'lazar@gmail.com', 'Good staff!!!', '2020-03-03', 1),
-(53, 'Nemanja', 'nemanja@gmail.com', 'Great!!!', '2020-03-03', 1);
+(1, 'Marko', 'marko@gmail.com', 'Great!', '2020-03-17', 0),
+(2, 'Djordje', 'djordje@gmail.com', 'Great service! ', '2020-03-12', 1),
+(3, 'Nina', 'nina@gmail.com', 'Good staff!!!', '2020-03-03', 0),
+(4, 'Lazar', 'lazar@gmail.com', 'All the best!', '2020-03-03', 0),
+(9, 'Marina', 'marina@gmail.com', 'Great and fresh fruits!', '2020-03-17', 1);
+(6, 'Marko', 'marko@gmail.com', 'Good job', '2020-03-17', 1),
+(7, 'Tijana', 'tijana@gmail.com', 'You are awesome!!!', '2020-03-17', 1),
+(8, 'Filip', 'filip@gmail.com', 'Best fruits!', '2020-03-17', 0),
 
 -- --------------------------------------------------------
 
