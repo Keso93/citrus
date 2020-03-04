@@ -1,0 +1,25 @@
+.dash {
+    margin: 20px auto;
+    background: #fff;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.dash h3{
+    text-align: center;
+}
+.dash h4{
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.dash button {
+    display: block;
+    margin: 10px auto;
+}
+
+.logout{
+    display: block;
+    width: 100%;
+}
