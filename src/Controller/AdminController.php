@@ -16,8 +16,7 @@ class AdminController extends AbstractController
     public function login()
     {
         if ($this->checkSession()){
-            header("Location: /admin/dashboard");
-            die();
+            $this->redirectToRoute('/admin/dashboard');
         } else {
             $error = $_SESSION['wrong'];
             unset($_SESSION['wrong']);
