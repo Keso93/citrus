@@ -84,6 +84,12 @@ class AdminController extends AbstractController
     {
         $comments = Request::postContent();
 
+        if (!is_array($comments) || count($comments) === 0){
+            $this->jsonResponse(["status" => false, "message" => "No comments provided!"]);
+            return;
+        }
+
+        $response = [];
         foreach ($comments as $comment){
             if($this->getCommentRepository()->editComment($comment['id'], $comment['approve'])){
                 $response = [
@@ -108,6 +114,12 @@ class AdminController extends AbstractController
     {
         $comments = Request::postContent();
 
+        if (!is_array($comments) || count($comments) === 0){
+            $this->jsonResponse(["status" => false, "message" => "No comments provided!"]);
+            return;
+        }
+
+        $response = [];
         foreach ($comments as $comment){
             if($this->getCommentRepository()->editComment($comment['id'], $comment['disapprove'])){
                 $response = [
