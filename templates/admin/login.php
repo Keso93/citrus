@@ -27,6 +27,7 @@
                 <input required type="password" class="form-control" id="password" name="password">
             </div>
             <button type="submit" class="btn btn-primary" id="loginAdmin">Log In!</button>
+            <button class="btn btn-info"><a href="/" style="color: #fff">Back to home page!</a></button>
         </form>
     </div>
 </div>
