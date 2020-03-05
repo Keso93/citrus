@@ -5,7 +5,7 @@ class Router
 {
     private static $routes = [];
     private static $pathNotFound;
-    private static $methodNotAllowed;
+
 
     /**
      * Function used to add a new route
@@ -26,11 +26,6 @@ class Router
     public static function pathNotFound($handler)
     {
         self::$pathNotFound = $handler;
-    }
-
-    public static function methodNotAllowed($function)
-    {
-        self::$methodNotAllowed = $function;
     }
 
     public static function run()
@@ -54,8 +49,6 @@ class Router
 
         // Get current request method
         $method = $_SERVER['REQUEST_METHOD'];
-
-        $pathMatchFound = false;
 
         $routeMatchFound = false;
 
@@ -110,11 +103,7 @@ class Router
         // No matching route was found
         if (!$routeMatchFound) {
             // But a matching path exists
-            if ($pathMatchFound) {
-                if (self::$methodNotAllowed) {
-                    call_user_func(self::$methodNotAllowed, $path, $method);
-                }
-            } else if (self::$pathNotFound) {
+            if (self::$pathNotFound) {
                 $handler = self::$pathNotFound;
                 $controller = new $handler[0]();
 

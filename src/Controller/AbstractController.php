@@ -21,11 +21,30 @@ abstract class AbstractController
 
     protected function loadTemplate($template)
     {
-        return file_get_contents(sprintf(__DIR__.'/../../templates/%s', $template));
+        return file_get_contents($this->templatePath($template));
     }
 
     protected function getConnection(){
         $database = new Database();
         return $database->getConnection();
+    }
+
+    protected function redirectToRoute($route)
+    {
+        header("Location: $route");
+        die();
+    }
+
+    protected function render($template, array $params = [])
+    {
+        ob_start();
+        include $this->templatePath($template);
+
+        return ob_get_clean();
+    }
+
+    private function templatePath($template)
+    {
+        return sprintf(__DIR__.'/../../templates/%s', $template);
     }
 }

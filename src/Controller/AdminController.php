@@ -16,11 +16,12 @@ class AdminController extends AbstractController
     public function login()
     {
         if ($this->checkSession()){
-            $host = Request::getSchemeAndHost();
-            header("Location: $host/admin/dashboard");
+            header("Location: /admin/dashboard");
             die();
         } else {
-            $this->response($this->loadTemplate('admin/login.html'));
+            $error = $_SESSION['wrong'];
+            unset($_SESSION['wrong']);
+            $this->response($this->render('admin/login.php', ['wrong' => $error]));
         }
     }
 
@@ -29,36 +30,27 @@ class AdminController extends AbstractController
      */
     public function jsonLogin()
     {
-        $content = Request::postContent();
-
-        $name = $content['name'];
-        $password = $content['password'];
+        $name = $_POST['name'];
+        $password = $_POST['password'];
         $stmt = $this->getRepository()->loginAdmin($name, $password);
 
-        session_start();
         if($stmt->rowCount() === 1){
             // get retrieved row
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
             $adminId = $row['id'];
             $adminName = $row['name'];
+
             $_SESSION['id'] = $adminId;
             $_SESSION['name'] = $adminName;
-            // create array
-            $response = [
-                "status" => true,
-                "message" => "Successfully Login!",
-                "id" => $row['id'],
-                "name" => $row['name']
-            ];
+
+            $this->redirectToRoute('/admin/dashboard');
+
+        } else {
+            $_SESSION['wrong'] = true;
+            $this->redirectToRoute('/admin/login');
+
         }
-        else {
-            $response = [
-                "status" => false,
-                "message" => "Invalid Username or Password!",
-            ];
-        }
-        $this->jsonResponse($response);
     }
 
     /**
@@ -69,9 +61,7 @@ class AdminController extends AbstractController
         if ($this->checkSession()){
             $this->response($this->loadTemplate('admin/adminDashboard.html'));
         } else {
-            $host = Request::getSchemeAndHost();
-            header("Location: $host/admin/login");
-            die();
+            $this->redirectToRoute('/admin/login');
         }
     }
 
@@ -80,15 +70,11 @@ class AdminController extends AbstractController
      */
     public function logout()
     {
-        session_start();
         unset($_SESSION['id']);
-        unset($_SESSION['username']);
         unset($_SESSION['name']);
 
-        $response = [
-            'status' => true
-        ];
-        $this->jsonResponse($response);
+        $this->redirectToRoute('/');
+
     }
 
     /**
@@ -136,6 +122,7 @@ class AdminController extends AbstractController
                 ];
             }
         }
+
         $this->jsonResponse($response);
     }
 
@@ -151,14 +138,8 @@ class AdminController extends AbstractController
         return new CommentRepository($this->getConnection());
     }
 
-
     private function checkSession()
     {
-        session_start();
-        if(isset($_SESSION['id']) && isset($_SESSION['name'])) {
-            return true;
-        } else {
-            return false;
-        }
+        return isset($_SESSION['id']) && isset($_SESSION['name']);
     }
 }

@@ -9,7 +9,6 @@ class FrontendController extends AbstractController
      */
     public function homepage()
     {
-        $this->response($this->loadTemplate('index.html'));
+        $this->response($this->render('index.php', ['is_logged' => isset($_SESSION['id'])]));
     }
-
 }

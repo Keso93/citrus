@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.6deb5
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Mar 05, 2020 at 12:10 AM
--- Server version: 5.7.28-0ubuntu0.18.04.4
--- PHP Version: 7.2.27-1+ubuntu18.04.1+deb.sury.org+1
+-- Host: localhost
+-- Generation Time: Mar 05, 2020 at 10:26 AM
+-- Server version: 10.3.22-MariaDB-1:10.3.22+maria~bionic-log
+-- PHP Version: 7.4.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -51,7 +53,7 @@ CREATE TABLE `comment` (
   `email` varchar(255) COLLATE utf8_slovenian_ci NOT NULL,
   `text` text COLLATE utf8_slovenian_ci NOT NULL,
   `date` date DEFAULT NULL,
-  `approve` int(11) NOT NULL DEFAULT '0'
+  `approve` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_slovenian_ci;
 
 --
@@ -59,14 +61,15 @@ CREATE TABLE `comment` (
 --
 
 INSERT INTO `comment` (`id`, `name`, `email`, `text`, `date`, `approve`) VALUES
-(1, 'Marko', 'marko@gmail.com', 'Great and fresh fruits!', '2020-03-17', 1),
+(1, 'Marko', 'marko@gmail.com', 'Great and fresh fruits!', '2020-03-17', 0),
 (3, 'Djordje', 'djordje@gmail.com', 'Great service! ', '2020-03-12', 1),
-(38, 'Tijana', 'tijana@gmail.com', 'You are awesome!!!', '2020-03-04', 0),
+(38, 'Tijana', 'tijana@gmail.com', 'You are awesome!!!', '2020-03-04', 1),
 (39, 'Marina', 'marina@gmail.com', 'Great and fresh fruits!', '2020-03-04', 1),
 (40, 'Nina', 'nina@gmail.com', 'Good stuff!', '2020-03-04', 0),
 (41, 'Marko', 'marko@gmail.com', 'Good job!', '2020-03-04', 0),
-(42, 'Lazar', 'lazar@gmail.com', 'All the best!', '2020-03-04', 1),
-(43, 'Filip', 'filip@gmail.com', 'Best fruits!', '2020-03-04', 1);
+(42, 'Lazar', 'lazar@gmail.com', 'All the best!', '2020-03-04', 0),
+(43, 'Filip', 'filip@gmail.com', 'Best fruits!', '2020-03-04', 1),
+(44, 'Branko', 'branko@gmail.com', 'Lemons are the best!', '2020-03-05', 1);
 
 -- --------------------------------------------------------
 
@@ -127,16 +130,20 @@ ALTER TABLE `product`
 --
 ALTER TABLE `admin`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

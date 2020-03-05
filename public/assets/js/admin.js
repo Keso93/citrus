@@ -4,34 +4,34 @@ $( document ).ready(function(){
 
 
 //Login
-$( "#loginAdmin" ).click(function(event) {
-    event.preventDefault();
-    var data = {
-        name: '',
-        password: ''
-    };
-    if (validator.empty($("#name").val())){
-        $('#name').attr('Placeholder', 'Required filed');
-    } else {
-        data.name = $("#name").val();
-    }
-    if (validator.empty($("#password").val())){
-        $('#password').attr('Placeholder', 'Required filed');
-    } else {
-        data.password = $("#password").val();
-    }
-
-    var loginSuccessFunction = function(response){
-        if (response.status) {
-            window.location.href = 'dashboard';
-        } else {
-            alert(response.message)
-        }
-    };
-    if (!validator.empty(data.name) && !validator.empty(data.password)){
-        adapter.post('/admin/login', data, loginSuccessFunction);
-    }
-});
+// $( "#loginAdmin" ).click(function(event) {
+//     event.preventDefault();
+//     var data = {
+//         name: '',
+//         password: ''
+//     };
+//     if (validator.empty($("#name").val())){
+//         $('#name').attr('Placeholder', 'Required filed');
+//     } else {
+//         data.name = $("#name").val();
+//     }
+//     if (validator.empty($("#password").val())){
+//         $('#password').attr('Placeholder', 'Required filed');
+//     } else {
+//         data.password = $("#password").val();
+//     }
+//
+//     var loginSuccessFunction = function(response){
+//         if (response.status) {
+//             // window.location.href = 'dashboard';
+//         } else {
+//             alert(response.message)
+//         }
+//     };
+//     if (!validator.empty(data.name) && !validator.empty(data.password)){
+//         adapter.post('/admin/login', data, loginSuccessFunction);
+//     }
+// });
 
 
 

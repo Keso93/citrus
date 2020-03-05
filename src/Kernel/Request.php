@@ -15,11 +15,13 @@ class Request
         if ($data){
             return json_decode($data, true);
         }
+
         return null;
     }
 
     public static function getSchemeAndHost()
     {
+        var_dump();
         return sprintf('%s://%s', $_SERVER['REQUEST_SCHEME'], $_SERVER['HTTP_HOST']);
     }
 }
