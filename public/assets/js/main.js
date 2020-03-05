@@ -5,7 +5,7 @@ var mainRow = $("#mainRow");
 var commentRow = $("#comment-row");
 
 var adapterSettings = {
-    baseUrl: 'http://dev.citrus.com',
+    baseUrl: 'http://localhost:8000',
 }
 
 var adapter = {
